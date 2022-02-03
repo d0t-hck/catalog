@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+
+    pgsql:
+        build: ./pgsql
+        ports:
+            - 5432:5432/tcp
+        networks:
+            - testovoe
+
+    nginx_article:
+        build: ./nginx
+        depends_on:
+            - fpm_article
+        ports:
+            - 88:80/tcp
+        volumes:
+            - ./nginx/article/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/article/hosts:/etc/hosts
+
+            - ./blog:/var/www/blog
+        networks:
+            - testovoe
+
+    fpm_article:
+        build: ./fpm
+        depends_on:
+            - pgsql
+        volumes:
+            - ./fpm/article/www.conf:/usr/local/etc/php-fpm.d/www.conf
+            - ./fpm/hosts:/etc/hosts
+
+            - ./blog:/var/www/blog
+        networks:
+            - testovoe
+networks:
+    testovoe:
+        driver: bridge
