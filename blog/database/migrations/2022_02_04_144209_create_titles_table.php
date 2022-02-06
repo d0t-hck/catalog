@@ -19,7 +19,7 @@ class CreateTitlesTable extends Migration
             $table->id();
             $table->string('name');
             $table->enum('status', ['Announced', 'Completed', 'Ongoing', 'Suspended'])->default('Announced');
-            $table->unsignedTinyInteger('release_year')->default(DB::raw('select extract(year from current_date)'));
+            $table->integer('release_year')->default(DB::raw('extract(year from current_date)'));
             $table->text('description');
             $table->foreignId('author_id')->constrained()->onDelete('cascade');
             $table->foreignId('artist_id')->constrained()->onDelete('cascade');
