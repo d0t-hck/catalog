@@ -80,7 +80,7 @@ $router->group(['prefix' => 'api'], function() use ($router) {
 
     $router->post('titles', ['uses' => 'TitleController@create']);
 
-    $router->put('titles/{id}', ['uses' => 'TitleController@updat']);
+    $router->put('titles/{id}', ['uses' => 'TitleController@update']);
 
     $router->delete('titles/{id}', ['uses' => 'TitleController@delete']);
 
