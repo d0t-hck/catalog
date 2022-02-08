@@ -17,7 +17,7 @@ class PageController extends Controller
 
     public function create(Request $request) {
         $this->validate($request, [
-            'chapter_id' => 'required|exists:chapters, id',
+            'chapter_id' => 'required|exists:chapters,id',
             'page' => 'required|numeric'
         ]);
         $page = Page::create($request->all());

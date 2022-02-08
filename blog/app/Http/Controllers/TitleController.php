@@ -16,17 +16,17 @@ class TitleController extends Controller
     }
 
     public function create(Request $request) {
-        $this->validate($request, [
+        $data  = $this->validate($request, [
             'name' => 'required|unique:titles',
-            'status' => 'required|numeric|exists:statuses, code',
-            'title_id' =>'required|exists:titles, id',
+            'status_id' => 'required|exists:statuses,code',
             'release_year' => 'numeric|nullable',
             'description' => 'nullable',
-            'author_id' => 'required|exists:authors, id',
-            'artist_id' => 'required|exists:artists, id',
-            'publisher_id' => 'required|exists:publishers, id'
+            'author_id' => 'required|exists:authors,id',
+            'artist_id' => 'required|exists:artists,id',
+            'publisher_id' => 'required|exists:publishers,id'
         ]);
-        $title = Title::create($request->all());
+        // dd($data);
+        $title = Title::create($data);
         return response()->json($title, 201);
     }
 

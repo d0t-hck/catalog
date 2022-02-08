@@ -19,7 +19,7 @@ class ChapterController extends Controller
         $this->validate($request, [
             'num' => 'required|numeric',
             'name' => 'nullable|string',
-            'title_id' =>'required|exists:titles, id'
+            'title_id' =>'required|exists:titles,id'
         ]);
         $chapter = Chapter::create($request->all());
         return response()->json($chapter, 201);
