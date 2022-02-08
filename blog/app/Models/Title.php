@@ -8,7 +8,7 @@ class Title extends Model
 {
     protected $fillable = [
         'name',
-        'status',
+        'status_id',
         'release_year',
         'description',
         'author_id',
