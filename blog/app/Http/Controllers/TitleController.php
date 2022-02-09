@@ -25,6 +25,8 @@ class TitleController extends Controller
             'artist_id' => 'required|exists:artists,id',
             'publisher_id' => 'required|exists:publishers,id'
         ]);
+        mkdir(base_path().'\/public/images/'.$data['name']);
+        dd(base_path());
         // dd($data);
         $title = Title::create($data);
         return response()->json($title, 201);
