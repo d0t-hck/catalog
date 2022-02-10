@@ -35,4 +35,15 @@ class PageController extends Controller
         return response('Deleted Successfully', 200);
     }
 
+    public function upload($id, Request $request) {
+        $page = Page::with('chapter.title')->findOrFail($id);
+        #return response()->json($page);
+        $destinationPath = base_path()."/{$page->chapter->title->name}";
+        dd($destinationPath);
+        if ($request->hasFile('image')){
+            $originalFilename = $request->file('image')->getClientOriginalName();
+            $fileExt = end(explode('.', $originalFilename));
+        }
+    }
+
 }

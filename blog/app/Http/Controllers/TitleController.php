@@ -25,10 +25,12 @@ class TitleController extends Controller
             'artist_id' => 'required|exists:artists,id',
             'publisher_id' => 'required|exists:publishers,id'
         ]);
-        mkdir(base_path().'\/public/images/'.$data['name']);
-        dd(base_path());
-        // dd($data);
         $title = Title::create($data);
+        $normalizedName = strtolower(str_replace(' ', '_', $title->name));
+        $path = base_path().'\/public/images/'.$normalizedName;
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
         return response()->json($title, 201);
     }
 

@@ -9,4 +9,8 @@ class Page extends Model
     protected $fillable = [
         'chapter_id', 'page'
     ];
+
+    public function chapter(){
+        return $this->belongsTo(Chapter::class);
+    }
 }

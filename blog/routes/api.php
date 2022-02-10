@@ -106,4 +106,6 @@ $router->group(['prefix' => 'api'], function() use ($router) {
 
     $router->delete('pages/{id}', ['uses' => 'PageController@delete']);
 
+    $router->post('pages/{id}', ['uses' => 'PageController@upload']);
+
 });
