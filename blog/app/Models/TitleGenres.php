@@ -9,4 +9,6 @@ class TitleGenres extends Model
     protected $fillable = [
         'title_id', 'genre_id'
     ];
+
+    public $timestamps = false;
 }
