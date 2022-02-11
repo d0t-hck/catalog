@@ -18,12 +18,14 @@ class CreateTitlesTable extends Migration
         Schema::create('titles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreign('status')->references('code')->on('statuses')->onDelete('set null');
+            $table->tinyInteger('status_code');
+            $table->foreign('status_code')->references('code')->on('statuses')->onDelete('set null');
             $table->integer('release_year')->default(DB::raw('extract(year from current_date)'));
             $table->text('description');
             $table->foreignId('author_id')->constrained()->onDelete('cascade');
             $table->foreignId('artist_id')->constrained()->onDelete('cascade');
             $table->foreignId('publisher_id')->constrained()->onDelete('cascade');
+            $table->string('normalized_name');
             $table->timestamps();
         });
     }
