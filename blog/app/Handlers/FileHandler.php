@@ -7,22 +7,24 @@ use \Exception;
 
 class FileHandler {
   public static function deleteContent($path) {
-    try{
-      $iterator = new DirectoryIterator($path);
-      foreach ( $iterator as $fileinfo ) {
-        if($fileinfo->isDot())continue;
-        if($fileinfo->isDir()){
-          if(FileHandler::deleteContent($fileinfo->getPathname()))
-            rmdir($fileinfo->getPathname());
-        }
-        if($fileinfo->isFile()){
-          unlink($fileinfo->getPathname());
-        }
-      }
-    } catch ( Exception $e ){
-       // write log
-       return false;
+    if (!file_exists($path)) {
+      return true;
     }
-    return true;
+
+    if (!is_dir($path)) {
+      return unlink($path);
+    }
+
+    foreach (scandir($path) as $item) {
+      if ($item == '.' || $item == '..') {
+        continue;
+      }
+
+      if (!FileHandler::deleteContent($path . DIRECTORY_SEPARATOR . $item)) {
+        return false;
+      }
+    }
+    return rmdir($path);
   }
+  
 }

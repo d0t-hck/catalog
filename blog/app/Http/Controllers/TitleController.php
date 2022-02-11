@@ -12,7 +12,7 @@ class TitleController extends Controller
     }
 
     public function item($id) {
-        return response()->json(Title::find($id));
+        return response()->json(Title::with('genres', 'chapters')->find($id));
     }
 
     public function create(Request $request) {

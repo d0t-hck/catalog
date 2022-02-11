@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
@@ -36,9 +37,16 @@ class PageController extends Controller
     }
 
     public function upload($id, Request $request) {
-        $page = Page::with('chapter.title')->findOrFail($id);
+        $data = $this->validate($request, [
+            'chapter_id' => 'required|exists:chapters,id',
+            'page' => Rule::unique('pages')->where(function ($query) use ($request) {
+                return $query->where('chapter_id', $request->chapter_id);
+            }),
+        ]);
+        $chapter = Page::with('title')->findOrFail($data['chapter_id']);
         #return response()->json($page);
-        $destinationPath = base_path()."/{$page->chapter->title->name}";
+        // $path = base_path("/public/images/{$title->normalized_name}");
+        $destinationPath = base_path("/public/images/{$chapter->title->normalized_name}/{}");
         dd($destinationPath);
         if ($request->hasFile('image')){
             $originalFilename = $request->file('image')->getClientOriginalName();

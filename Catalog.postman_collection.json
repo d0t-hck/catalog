@@ -429,7 +429,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"sport\"\r\n}"
+							"raw": "{\r\n    \"name\": \"seinen\"\r\n}"
 						},
 						"url": {
 							"raw": "localhost:8000/api/genres",
@@ -569,7 +569,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"code\": \"3\",\r\n    \"name\": \"Completed\"\r\n}"
+							"raw": "{\r\n    \"code\": \"1\",\r\n    \"name\": \"Announced\"\r\n}"
 						},
 						"url": {
 							"raw": "localhost:8000/api/statuses",
@@ -708,7 +708,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"status_id\":1,\r\n    \"description\": \"\",\r\n    \"author_id\": 2,\r\n    \"artist_id\": 1,\r\n    \"publisher_id\": 2\r\n}"
+							"raw": "{\r\n    \"name\": \"Ao Ashi\",\r\n    \"status_code\":1,\r\n    \"description\": \"\",\r\n    \"author_id\": 1,\r\n    \"artist_id\": 1,\r\n    \"publisher_id\": 1,\r\n    \"genres\": [1,2]\r\n}"
 						},
 						"url": {
 							"raw": "localhost:8000/api/titles",
@@ -935,7 +935,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/chapters/1",
+							"raw": "localhost:8000/api/chapters/2",
 							"host": [
 								"localhost"
 							],
@@ -943,7 +943,7 @@
 							"path": [
 								"api",
 								"chapters",
-								"1"
+								"2"
 							],
 							"query": [
 								{
@@ -1015,7 +1015,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"chapter_id\": 1,\r\n    \"page\": 1\r\n}"
+							"raw": "{\r\n    \"chapter_id\": 21,\r\n    \"page\": 1\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/pages",
@@ -1085,6 +1085,47 @@
 								"api",
 								"pages",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "image/png",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/itstep.ITSTEP/Desktop/179-01_yvDq.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/pages",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"pages"
 							]
 						}
 					},

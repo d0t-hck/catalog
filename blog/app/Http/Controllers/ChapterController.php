@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ChapterController extends Controller
 {
     public function list() {
-        return response()->json(Chapter::all());
+        return response()->json(Chapter::with('title', 'pages')->get());
     }
 
     public function item($id) {

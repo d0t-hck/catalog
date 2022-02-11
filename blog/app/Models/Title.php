@@ -23,24 +23,21 @@ class Title extends Model
     }
 
     public function chapters(){
-        return $this->belongsToMany(Chapter::class, 'chapters');
+        return $this->hasMany(Chapter::class);
     }
 
     protected static function boot() {
-        $path = base_path().'\/public/images/';
         parent::boot();
-        self::created(function ($user) {
-            $path = base_path().'\/public/images/'.$user->normalized_name;
+        self::created(function ($title) {
+            $path = base_path("/public/images/{$title->normalized_name}");
             if (!file_exists($path)) {
                 mkdir($path);
             }
         });
 
-        self::deleted(function($user){
-            $dir = base_path().'\/public/images/'.$user->normalized_name;
-            if (file_exists($dir)){
-                FileHandler::deleteContent($dir);
-            }
+        self::deleted(function($title){
+            $dir = base_path("/public/images/{$title->normalized_name}");
+            FileHandler::deleteContent($dir);
         });
     }
 }
