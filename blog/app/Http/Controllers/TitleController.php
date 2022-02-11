@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class TitleController extends Controller
 {
     public function list() {
-        return response()->json(Title::all());
+        return response()->json(Title::with('genres')->paginate(10));
     }
 
     public function item($id) {
@@ -18,19 +18,17 @@ class TitleController extends Controller
     public function create(Request $request) {
         $data  = $this->validate($request, [
             'name' => 'required|unique:titles',
-            'status_id' => 'required|exists:statuses,code',
+            'status_code' => 'required|exists:statuses,code',
             'release_year' => 'numeric|nullable',
             'description' => 'nullable',
             'author_id' => 'required|exists:authors,id',
             'artist_id' => 'required|exists:artists,id',
-            'publisher_id' => 'required|exists:publishers,id'
+            'publisher_id' => 'required|exists:publishers,id',
+            'genres' => 'required|array'
         ]);
+        $data['normalized_name'] = strtolower(str_replace(' ', '_', $data['name']));
         $title = Title::create($data);
-        $normalizedName = strtolower(str_replace(' ', '_', $title->name));
-        $path = base_path().'\/public/images/'.$normalizedName;
-        if (!file_exists($path)) {
-            mkdir($path);
-        }
+        $title->genres()->attach($data['genres']);
         return response()->json($title, 201);
     }
 
