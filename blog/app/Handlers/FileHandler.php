@@ -23,5 +23,18 @@ class FileHandler {
     }
     return rmdir($path);
   }
+
+  public static function createFolder($path) {
+    if (!file_exists($path)) {
+      return mkdir($path);
+    }
+  }
+
+  public static function changeName($old, $new, $base) {
+    if (file_exists($base.$old)) {
+      return rename($base.$old, $base.$new);
+    }
+    return false;
+  }
   
 }

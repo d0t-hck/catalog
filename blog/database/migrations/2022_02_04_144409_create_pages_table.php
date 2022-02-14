@@ -17,6 +17,7 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->foreignId('chapter_id')->constrained()->onDelete('cascade');
             $table->integer('page');
+            $table->string('ext', 4);
             $table->timestamps();
         });
     }

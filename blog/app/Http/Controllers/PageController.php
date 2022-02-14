@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 class PageController extends Controller
 {
     public function list() {
-        return response()->json(Page::all());
+        return response()->json(Page::with('chapter.title')->get());
     }
 
     public function item($id) {
@@ -34,20 +34,15 @@ class PageController extends Controller
     }
 
     public function upload($id, Request $request) {
-        $data = $this->validate($request, [
-            'chapter_id' => 'required|exists:chapters,id',
-            'page' => Rule::unique('pages')->where(function ($query) use ($request) {
-                return $query->where('chapter_id', $request->chapter_id);
-            }),
-        ]);
-        $chapter = Page::with('title')->findOrFail($data['chapter_id']);
-        #return response()->json($page);
-        // $path = base_path("/public/images/{$title->normalized_name}");
-        $destinationPath = base_path("/public/images/{$chapter->title->normalized_name}/{}");
-        dd($destinationPath);
-        if ($request->hasFile('image')){
+        $page = Page::findOrFail($id);
+        $title = $page->chapter->title->normalized_name;
+        $chapter = $page->chapter->num;
+        $destinationPath = base_path('public'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$title.DIRECTORY_SEPARATOR.$chapter.DIRECTORY_SEPARATOR);
+        if ($request->hasFile('image')) {
             $originalFilename = $request->file('image')->getClientOriginalName();
-            $fileExt = end(explode('.', $originalFilename));
+            $originalNameArr = explode('.', $originalFilename);
+            $fileName = $page->page.'.'.end($originalNameArr);
+            $request->file('image')->move($destinationPath, $fileName);
         }
     }
 

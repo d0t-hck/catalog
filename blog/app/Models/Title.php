@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Handlers\FileHandler;
+use Directory;
 use Illuminate\Database\Eloquent\Model;
 
 class Title extends Model
@@ -27,26 +28,24 @@ class Title extends Model
     }
 
     protected static function boot() {
+        $path = base_path(DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR);
         parent::boot();
         self::creating(function ($title) {
             $title->normalized_name = self::normalizeName($title->name);
         });
 
-        self::created(function ($title) {
-            $path = base_path("/public/images/{$title->normalized_name}");
-            if (!file_exists($path)) {
-                mkdir($path);
-            }
+        self::created(function ($title) use($path) {
+            FileHandler::createFolder($path.$title->normalized_nmae);
         });
 
-        self::updating(function($title) {
+        self::updating(function($title) use ($path) {
             $title->normalized_name = self::normalizeName($title->name);
-            return self::renameFolder($title->getOriginal('normalized_name'), $title->normalized_name);
+            return FileHandler::changeName($title->getOriginal('normalized_name'), $title->normalized_name, $path);
         });
 
-        self::deleted(function($title){
-            $dir = base_path("/public/images/{$title->normalized_name}");
-            FileHandler::deleteContent($dir);
+        self::deleted(function($title) use($path){
+            // $dir = base_path("/public/images/{$title->normalized_name}");
+            FileHandler::deleteContent($path.$title->normalized_name);
         });
     }
 
@@ -61,12 +60,6 @@ class Title extends Model
             'publisher_id' => 'required|exists:publishers,id',
             'genres' => 'required|array'
         ];
-    }
-
-    protected static function renameFolder($from, $to) {
-        $old = base_path("/public/images/{$from}");
-        $to = base_path("/public/images/{$to}");
-        return rename($old, $to);
     }
 
     protected static function normalizeName($name) {
