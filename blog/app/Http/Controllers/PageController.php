@@ -17,10 +17,7 @@ class PageController extends Controller
     }
 
     public function create(Request $request) {
-        $this->validate($request, [
-            'chapter_id' => 'required|exists:chapters,id',
-            'page' => 'required|numeric'
-        ]);
+        $this->validate($request, Page::getValidationRules($request));
         $page = Page::create($request->all());
         return response()->json($page, 201);
     }

@@ -40,4 +40,18 @@ class Title extends Model
             FileHandler::deleteContent($dir);
         });
     }
+
+    public static function getValidationRules() {
+        return [
+            'name' => 'required|unique:titles',
+            'status_code' => 'required|exists:statuses,code',
+            'release_year' => 'numeric|nullable',
+            'description' => 'nullable',
+            'author_id' => 'required|exists:authors,id',
+            'artist_id' => 'required|exists:artists,id',
+            'publisher_id' => 'required|exists:publishers,id',
+            'genres' => 'required|array'
+        ];
+    }
+
 }

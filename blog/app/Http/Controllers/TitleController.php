@@ -16,17 +16,7 @@ class TitleController extends Controller
     }
 
     public function create(Request $request) {
-        $data  = $this->validate($request, [
-            'name' => 'required|unique:titles',
-            'status_code' => 'required|exists:statuses,code',
-            'release_year' => 'numeric|nullable',
-            'description' => 'nullable',
-            'author_id' => 'required|exists:authors,id',
-            'artist_id' => 'required|exists:artists,id',
-            'publisher_id' => 'required|exists:publishers,id',
-            'genres' => 'required|array'
-        ]);
-        $data['normalized_name'] = strtolower(str_replace(' ', '_', $data['name']));
+        $data  = $this->validate($request, Title::getValidationRules());
         $title = Title::create($data);
         $title->genres()->attach($data['genres']);
         return response()->json($title, 201);
