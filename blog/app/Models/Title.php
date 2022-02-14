@@ -28,11 +28,20 @@ class Title extends Model
 
     protected static function boot() {
         parent::boot();
+        self::creating(function ($title) {
+            $title->normalized_name = self::normalizeName($title->name);
+        });
+
         self::created(function ($title) {
             $path = base_path("/public/images/{$title->normalized_name}");
             if (!file_exists($path)) {
                 mkdir($path);
             }
+        });
+
+        self::updating(function($title) {
+            $title->normalized_name = self::normalizeName($title->name);
+            return self::renameFolder($title->getOriginal('normalized_name'), $title->normalized_name);
         });
 
         self::deleted(function($title){
@@ -52,6 +61,16 @@ class Title extends Model
             'publisher_id' => 'required|exists:publishers,id',
             'genres' => 'required|array'
         ];
+    }
+
+    protected static function renameFolder($from, $to) {
+        $old = base_path("/public/images/{$from}");
+        $to = base_path("/public/images/{$to}");
+        return rename($old, $to);
+    }
+
+    protected static function normalizeName($name) {
+        return strtolower(str_replace(' ', '_', $name));
     }
 
 }
