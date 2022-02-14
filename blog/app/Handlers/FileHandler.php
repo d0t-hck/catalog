@@ -2,9 +2,6 @@
 
 namespace App\Handlers;
 
-use \DirectoryIterator;
-use \Exception;
-
 class FileHandler {
   public static function deleteContent($path) {
     if (!file_exists($path)) {
