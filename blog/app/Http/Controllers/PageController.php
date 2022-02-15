@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Handlers\FileHandler;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -17,7 +18,7 @@ class PageController extends Controller
     }
 
     public function create(Request $request) {
-        $this->validate($request, Page::getValidationRules($request));
+        $this->validate($request, Page::getValidationRules($request->chapter_id));
         $page = Page::create($request->all());
         return response()->json($page, 201);
     }
@@ -42,8 +43,12 @@ class PageController extends Controller
             $originalFilename = $request->file('image')->getClientOriginalName();
             $originalNameArr = explode('.', $originalFilename);
             $fileName = $page->page.'.'.end($originalNameArr);
+            FileHandler::deleteContent($destinationPath.$fileName);
             $request->file('image')->move($destinationPath, $fileName);
+            $page->ext = end($originalNameArr);
         }
+        $page->update();
+        return response()->json('OK', 201);
     }
 
 }
