@@ -36,5 +36,17 @@ class FileHandler {
     }
     return false;
   }
+
+  public static function moveFiles($from, $to) {
+    if (!file_exists($from)) {
+      return true;
+    }
+
+    if (!is_dir($from)) {
+      return move_uploaded_file($from, $to);
+    }
+
+    return rename($from, $to);
+  }
   
 }
