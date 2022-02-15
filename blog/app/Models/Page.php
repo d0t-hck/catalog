@@ -20,11 +20,11 @@ class Page extends Model
         return $this->belongsTo(Chapter::class);
     }
 
-    public static function getValidationRules($request){
+    public static function getValidationRules($chapterId){
         return [
             'chapter_id' => 'required|exists:chapters,id',
-            'page' => Rule::unique('pages')->where(function ($query) use ($request) {
-                return $query->where('chapter_id', $request->chapter_id);
+            'page' => Rule::unique('pages')->where(function ($query) use ($chapterId) {
+                return $query->where('chapter_id', $chapterId);
             }),
         ];
     }
@@ -33,13 +33,24 @@ class Page extends Model
         $path = base_path('public'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
         parent::boot();
         self::updating(function($page) use($path){
-            $pagePath = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR;
-            return FileHandler::changeName($page->getOriginal('page').$page->ext, $page->page.$page->ext, $pagePath);
+            $originalPage = $page->getOriginal('page');
+            $originalChapter = $page->getOriginal('chapter_id');
+            // dd($originalChapter);
+            if ($page->page != $originalPage) {
+                $pagePath = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR;
+                FileHandler::changeName($originalPage.'.'.$page->ext, $page->page . '.' . $page->ext, $pagePath);
+            }
+            if ($page->chapter_id != $originalChapter) {
+                $chapter = Chapter::find($originalChapter);
+                $from = $path.$chapter->title->normalized_name.DIRECTORY_SEPARATOR.$chapter->num.DIRECTORY_SEPARATOR.$page->page.'.'.$page->ext;
+                $to = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR.$page->page.'.'.$page->ext;
+                dd($to);
+            }
         });
 
         self::deleting(function($page) use($path) {
             $pagePath = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR;
-                return unlink($pagePath.$page->page.$page->ext);
+            return FileHandler::deleteContent($pagePath.$page->page.'.'.$page->ext);
         });
     }
 }
