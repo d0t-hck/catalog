@@ -43,7 +43,7 @@ class FileHandler {
     }
 
     if (!is_dir($from)) {
-      return move_uploaded_file($from, $to);
+      return rename($from, $to);
     }
 
     return rename($from, $to);
