@@ -35,7 +35,6 @@ class Page extends Model
         self::updating(function($page) use($path){
             $originalPage = $page->getOriginal('page');
             $originalChapter = $page->getOriginal('chapter_id');
-            // dd($originalChapter);
             if ($page->page != $originalPage) {
                 $pagePath = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR;
                 FileHandler::changeName($originalPage.'.'.$page->ext, $page->page . '.' . $page->ext, $pagePath);
@@ -44,7 +43,7 @@ class Page extends Model
                 $chapter = Chapter::find($originalChapter);
                 $from = $path.$chapter->title->normalized_name.DIRECTORY_SEPARATOR.$chapter->num.DIRECTORY_SEPARATOR.$page->page.'.'.$page->ext;
                 $to = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR.$page->page.'.'.$page->ext;
-                dd($to);
+                FileHandler::moveFiles($from, $to);
             }
         });
 
