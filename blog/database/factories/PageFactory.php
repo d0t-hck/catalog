@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Page;
+use App\Models\Page;
+use App\Models\Chapter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PageFactory extends Factory
@@ -12,7 +13,8 @@ class PageFactory extends Factory
     public function definition(): array
     {
     	return [
-    	    //
+    	    'chapter_id' => Chapter::all()->random()->id,
+            'page' => $this->faker->unique()->randomDigit,
     	];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Publisher;
+use App\Models\Publisher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PublisherFactory extends Factory

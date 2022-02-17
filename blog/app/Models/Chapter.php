@@ -5,9 +5,12 @@ namespace App\Models;
 use App\Models;
 use App\Handlers\FileHandler;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Chapter extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'num', 'name', 'title_id'
     ];

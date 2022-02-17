@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Status;
+use App\Models\Status;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StatusFactory extends Factory

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AuthorController extends Controller
 {
     public function list() {
-        return response()->json(Author::all());
+        return response()->json(Author::paginate(10));
     }
 
     public function item($id) {

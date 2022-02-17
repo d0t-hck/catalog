@@ -16,12 +16,12 @@ class TitleFactory extends Factory
     public function definition(): array
     {
     	return [
-    	    'name' => $this->faker->unique()->words(2),
+    	    'name' => $this->faker->unique()->word,
             'status_code' => Status::all()->random()->code,
-            'release_year' => $this->faker->date('YYYY'),
+            'release_year' => $this->faker->date('Y'),
             'description' => $this ->faker->text(100),
             'author_id' => Author::all()->random()->id,
-            'artis_id' => Artist::all()->random()->id,
+            'artist_id' => Artist::all()->random()->id,
             'publisher_id' => Publisher::all()->random()->id
     	];
     }

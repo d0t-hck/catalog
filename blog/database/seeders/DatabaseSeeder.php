@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Status;
+// use databa
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
+        $this->call([
+            CreatorSeeder::class,
+            GenreSeeder::class,
+            StatusSeder::class,
+            TitleSeeder::class,
+            ChapterSeeder::class,
+        ]);
     }
 }

@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Handlers\FileHandler;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
 class Page extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'chapter_id', 'page'
     ];

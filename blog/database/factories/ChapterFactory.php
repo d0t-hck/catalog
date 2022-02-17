@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Chapter;
+use App\Models\Chapter;
+use App\Models\Title;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ChapterFactory extends Factory
@@ -12,7 +13,8 @@ class ChapterFactory extends Factory
     public function definition(): array
     {
     	return [
-    	    //
+    	    'num' => $this->faker->randomDigit,
+            'title_id' => Title::all()->random()->id,
     	];
     }
 }
