@@ -1,24 +1,56 @@
-# Lumen PHP Framework
+# Catalog REST API on Lumen
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+## Endpoints
+- [Creators](#creators-endpoint)
+- [Genres](#genres-endpoint)
+- [Statuses](#statuses-endpoint)
+- [Titles](#titles-endpoint)
+- [Chapters](#chapters-endpoint)
+- [Pages](#pages-endpoint)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Creators
+- [Creators: Get](#creators-get)
+- [Creators: Post](#creators-post)
+- [Creators: Put](#creators-put)
+- [Creators: Delete](#creators-delete)
 
-## Official Documentation
+## Creators: Get
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+### Request
 
-## Contributing
+`/api/creators`
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    curl GET 'localhost:8000/api/authors'
 
-## Security Vulnerabilities
+### Response
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+<details>
+<summary>Response</summary>
 
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```json
+    {
+        "current_page": 1,
+        "data": [
+            {
+                "id":1,
+                "name": "",
+                "info": "",
+                "type": "",
+                "created_at": "",
+                "updated_at": "",
+            },
+            ...
+        ],
+        "first_page_url": "http://localhost:8000/api/creators?page=1",
+        "from": 1,
+        "last_page": 5,
+        "last_page_url": "http://localhost:8000/api/creators?page=5",
+        "next_page_url": "http://localhost:8000/api/creators?page=2",
+        "path": "http://localhost:8000/api/creators",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 10,
+        "total": 45
+    }
+```
+</details>
