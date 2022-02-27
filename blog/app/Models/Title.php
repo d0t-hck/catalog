@@ -56,7 +56,7 @@ class Title extends Model
         return [
             'name' => 'required|unique:titles',
             'status_code' => 'required|exists:statuses,code',
-            'release_year' => 'numeric|nullable',
+            'release_year' => 'required|date_format:Y',
             'description' => 'nullable',
             'author_id' => 'required|exists:creators,id',
             'artist_id' => 'required|exists:creators,id',
