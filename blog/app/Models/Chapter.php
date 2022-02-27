@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models;
-use App\Handlers\FileHandler;
+use App\Services\FileService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -28,27 +28,27 @@ class Chapter extends Model
         parent::boot();
         self::created(function ($chapter) use($path) {
             $title = Title::find($chapter->title_id, 'normalized_name');
-            return FileHandler::createFolder($path.$title->normalized_nam.DIRECTORY_SEPARATOR.$chapter->num);
+            return FileService::createFolder($path.$title->normalized_nam.DIRECTORY_SEPARATOR.$chapter->num);
         });
 
         self::updating(function($chapter) use($path) {
             if ($chapter->num != $chapter->getOriginal('num')){
                 $title = Title::find($chapter->getOriginal('title_id'), 'normalized_name');
-                FileHandler::changeName($chapter->getOriginal('num'), $chapter->num, $path.$title->normalized_name.DIRECTORY_SEPARATOR);
+                FileService::changeName($chapter->getOriginal('num'), $chapter->num, $path.$title->normalized_name.DIRECTORY_SEPARATOR);
             }
             if ($chapter->title_id != $chapter->getOriginal('title_id')){
                 $oldTitle = Title::find($chapter->getOriginal('title_id'), 'normalized_name');
                 $newTitle = Title::find($chapter->title_id, 'normalized_name');
                 $from = $path.$oldTitle->normalized_name.DIRECTORY_SEPARATOR.$chapter->num;
                 $to = $path.$newTitle->normalized_name.DIRECTORY_SEPARATOR.$chapter->num;
-                FileHandler::moveFiles($from, $to);
+                FileService::moveFiles($from, $to);
             }
         });
 
         self::deleted(function($chapter){
             $title = Title::find($chapter->title_id, 'normalized_name')->normalized_name;
             $dir = base_path("/public/images/{$title}/{$chapter->num}");
-            FileHandler::deleteContent($dir);
+            FileService::deleteContent($dir);
         });
     }
 }

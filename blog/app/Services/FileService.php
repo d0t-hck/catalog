@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Handlers;
+namespace App\Services;
 
-class FileHandler {
+class FileService {
   public static function deleteContent($path) {
     if (!file_exists($path)) {
       return true;
@@ -17,7 +17,7 @@ class FileHandler {
         continue;
       }
 
-      if (!FileHandler::deleteContent($path . DIRECTORY_SEPARATOR . $item)) {
+      if (!FileService::deleteContent($path . DIRECTORY_SEPARATOR . $item)) {
         return false;
       }
     }

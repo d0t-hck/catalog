@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Handlers\FileHandler;
-use Directory;
+use App\Services\FileService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,18 +37,18 @@ class Title extends Model
         });
 
         self::created(function ($title) use($path) {
-            FileHandler::createFolder($path.$title->normalized_name);
+            FileService::createFolder($path.$title->normalized_name);
         });
 
         self::updating(function($title) use ($path) {
             if ($title->name != $title->getOriginal('name')){
                 $title->normalized_name = self::normalizeName($title->name);
-                FileHandler::changeName($title->getOriginal('normalized_name'), $title->normalized_name, $path);
+                FileService::changeName($title->getOriginal('normalized_name'), $title->normalized_name, $path);
             }
         });
 
         self::deleted(function($title) use($path){
-            FileHandler::deleteContent($path.$title->normalized_name);
+            FileService::deleteContent($path.$title->normalized_name);
         });
     }
 
