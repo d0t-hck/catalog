@@ -19,7 +19,7 @@ class Status extends Model
             'name' => 'required|string|unique:statuses'
         ] : [
             'code' => 'numeric|unique:statuses',
-            'name' => 'sometimes|string|unique:statuses'
+            'name' => 'string|unique:statuses'
         ];
     }
 }
