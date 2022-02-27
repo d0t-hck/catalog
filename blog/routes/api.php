@@ -19,93 +19,119 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function() use ($router) {
     #Author
-    $router->get('authors', ['uses' => 'AuthorController@list']);
+    $router->group(['prefix' => 'authors'], function() use ($router) {
 
-    $router->get('authors/{id}', ['uses' => 'AuthorController@item']);
-
-    $router->post('authors', ['uses' => 'AuthorController@create']);
-
-    $router->put('authors/{id}', ['uses' => 'AuthorController@update']);
+        $router->get('/', ['uses' => 'AuthorController@list']);
     
-    $router->delete('authors/{id}', ['uses' => 'AuthorController@delete']);
+        $router->get('{id}', ['uses' => 'AuthorController@item']);
+    
+        $router->post('/', ['uses' => 'AuthorController@create']);
+    
+        $router->put('{id}', ['uses' => 'AuthorController@update']);
+        
+        $router->delete('{id}', ['uses' => 'AuthorController@delete']);
+
+        // $router->get('{id}/titles', ['uses' => 'AuthorController@titles']);
+    });
 
     #Artist
-    $router->get('artists', ['uses' => 'ArtistController@list']);
+    $router->group(['prefix' => 'artists'], function() use ($router) {
 
-    $router->get('artists/{id}', ['uses' => 'ArtistController@item']);
-
-    $router->post('artists', ['uses' => 'ArtistController@create']);
-
-    $router->put('artists/{id}', ['uses' => 'ArtistController@update']);
-
-    $router->delete('artists/{id}', ['uses' => 'ArtistController@delete']);
+        $router->get('/', ['uses' => 'ArtistController@list']);
+    
+        $router->get('{id}', ['uses' => 'ArtistController@item']);
+    
+        $router->post('/', ['uses' => 'ArtistController@create']);
+    
+        $router->put('{id}', ['uses' => 'ArtistController@update']);
+    
+        $router->delete('{id}', ['uses' => 'ArtistController@delete']);
+    });
 
     #Publisher
-    $router->get('publishers', ['uses' => 'PublisherController@list']);
+    $router->group(['prefix' => 'publishers'], function() use ($router) {
 
-    $router->get('publishers/{id}', ['uses' => 'PublisherController@item']);
-
-    $router->post('publishers', ['uses' => 'PublisherController@create']);
-
-    $router->put('publishers/{id}', ['uses' => 'PublisherController@update']);
-
-    $router->delete('publishers/{id}', ['uses' => 'PublisherController@delete']);
+        $router->get('/', ['uses' => 'PublisherController@list']);
+    
+        $router->get('{id}', ['uses' => 'PublisherController@item']);
+    
+        $router->post('/', ['uses' => 'PublisherController@create']);
+    
+        $router->put('{id}', ['uses' => 'PublisherController@update']);
+    
+        $router->delete('{id}', ['uses' => 'PublisherController@delete']);
+    });
 
     #Genre
-    $router->get('genres', ['uses' => 'GenreController@list']);
+    $router->group(['prefix' => 'genres'], function() use ($router) {
 
-    $router->get('genres/{id}', ['uses' => 'GenreController@item']);
-
-    $router->post('genres', ['uses' => 'GenreController@create']);
-
-    $router->put('genres/{id}', ['uses' => 'GenreController@update']);
-
-    $router->delete('genres/{id}', ['uses' => 'GenreController@delete']);
+        $router->get('/', ['uses' => 'GenreController@list']);
+    
+        $router->get('{id}', ['uses' => 'GenreController@item']);
+    
+        $router->post('/', ['uses' => 'GenreController@create']);
+    
+        $router->put('{id}', ['uses' => 'GenreController@update']);
+    
+        $router->delete('{id}', ['uses' => 'GenreController@delete']);
+    });
 
     #Status
-    $router->get('statuses', ['uses' => 'StatusController@list']);
+    $router->group(['prefix' => 'statuses'], function() use ($router) {
 
-    $router->get('statuses/{id}', ['uses' => 'StatusController@item']);
-
-    $router->post('statuses', ['uses' => 'StatusController@create']);
-
-    $router->put('statuses/{id}', ['uses' => 'StatusController@update']);
-
-    $router->delete('statuses/{id}', ['uses' => 'StatusController@delete']);
+        $router->get('/', ['uses' => 'StatusController@list']);
+    
+        $router->get('{id}', ['uses' => 'StatusController@item']);
+    
+        $router->post('/', ['uses' => 'StatusController@create']);
+    
+        $router->put('{id}', ['uses' => 'StatusController@update']);
+    
+        $router->delete('{id}', ['uses' => 'StatusController@delete']);
+    });
 
     #Title
-    $router->get('titles', ['uses' => 'TitleController@list']);
+    $router->group(['prefix' => 'titles'], function() use ($router) {
 
-    $router->get('titles/{id}', ['uses' => 'TitleController@item']);
-
-    $router->post('titles', ['uses' => 'TitleController@create']);
-
-    $router->put('titles/{id}', ['uses' => 'TitleController@update']);
-
-    $router->delete('titles/{id}', ['uses' => 'TitleController@delete']);
+        $router->get('/', ['uses' => 'TitleController@list']);
+    
+        $router->get('{id}', ['uses' => 'TitleController@item']);
+    
+        $router->post('/', ['uses' => 'TitleController@create']);
+    
+        $router->put('{id}', ['uses' => 'TitleController@update']);
+    
+        $router->delete('{id}', ['uses' => 'TitleController@delete']);
+    });
 
     #Chapter
-    $router->get('chapters', ['uses' => 'ChapterController@list']);
+    $router->group(['prefix' => 'chapters'], function() use ($router) {
 
-    $router->get('chapters/{id}', ['uses' => 'ChapterController@item']);
-
-    $router->post('chapters', ['uses' => 'ChapterController@create']);
-
-    $router->put('chapters/{id}', ['uses' => 'ChapterController@update']);
-
-    $router->delete('chapters/{id}', ['uses' => 'ChapterController@delete']);
+        $router->get('/', ['uses' => 'ChapterController@list']);
+    
+        $router->get('{id}', ['uses' => 'ChapterController@item']);
+    
+        $router->post('/', ['uses' => 'ChapterController@create']);
+    
+        $router->put('{id}', ['uses' => 'ChapterController@update']);
+    
+        $router->delete('{id}', ['uses' => 'ChapterController@delete']);
+    });
 
     #Page
-    $router->get('pages', ['uses' => 'PageController@list']);
+    $router->group(['prefix' => 'pages'], function() use ($router) {
 
-    $router->get('pages/{id}', ['uses' => 'PageController@item']);
-
-    $router->post('pages', ['uses' => 'PageController@create']);
-
-    $router->put('pages/{id}', ['uses' => 'PageController@update']);
-
-    $router->delete('pages/{id}', ['uses' => 'PageController@delete']);
-
-    $router->post('pages/{id}', ['uses' => 'PageController@upload']);
+        $router->get('/', ['uses' => 'PageController@list']);
+    
+        $router->get('{id}', ['uses' => 'PageController@item']);
+    
+        $router->post('/', ['uses' => 'PageController@create']);
+    
+        $router->put('{id}', ['uses' => 'PageController@update']);
+    
+        $router->delete('{id}', ['uses' => 'PageController@delete']);
+    
+        $router->post('{id}', ['uses' => 'PageController@upload']);
+    });
 
 });
