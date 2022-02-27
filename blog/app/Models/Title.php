@@ -58,9 +58,9 @@ class Title extends Model
             'status_code' => 'required|exists:statuses,code',
             'release_year' => 'numeric|nullable',
             'description' => 'nullable',
-            'author_id' => 'required|exists:authors,id',
-            'artist_id' => 'required|exists:artists,id',
-            'publisher_id' => 'required|exists:publishers,id',
+            'author_id' => 'required|exists:creators,id',
+            'artist_id' => 'required|exists:creators,id',
+            'publisher_id' => 'required|exists:creators,id',
             'genres' => 'required|array'
         ];
     }

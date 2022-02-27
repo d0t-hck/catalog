@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Artist;
-use App\Models\Author;
-use App\Models\Publisher;
+use App\Models\Creator;
 use Illuminate\Database\Seeder;
 
 class CreatorSeeder extends Seeder
@@ -16,16 +14,16 @@ class CreatorSeeder extends Seeder
      */
     public function run()
     {
-        Author::factory()
+        Creator::factory()
             ->count(20)
-            ->create();
+            ->create(['type' => 'Author']);
             
-        Artist::factory()
+        Creator::factory()
             ->count(20)
-            ->create();
+            ->create(['type' => 'Artist']);
 
-        Publisher::factory()
+        Creator::factory()
             ->count(10)
-            ->create();
+            ->create(['type' => 'Publisher']);
     }
 }
