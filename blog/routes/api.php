@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'api'], function() use ($router) {
+$router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($router) {
     #Author
     $router->group(['prefix' => 'authors'], function() use ($router) {
 

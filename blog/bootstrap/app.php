@@ -83,6 +83,10 @@ $app->configure('app');
 //     'cors' => App\Http\Middleware\CorsMiddleware::class
 // ]);
 
+    $app->routeMiddleware([
+        'convert' => App\Http\Middleware\ConvertEmptyStringsToNull::class
+    ]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
