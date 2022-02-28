@@ -19,17 +19,17 @@ $router->get('/', function () use ($router) {
 
 $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($router) {
     #Author
-    $router->group(['prefix' => 'authors'], function() use ($router) {
+    $router->group(['prefix' => 'creators'], function() use ($router) {
 
-        $router->get('/', ['uses' => 'AuthorController@list']);
+        $router->get('/', ['uses' => 'CreatorController@list']);
     
-        $router->get('{id}', ['uses' => 'AuthorController@item']);
+        $router->get('{id}', ['uses' => 'CreatorController@item']);
     
-        $router->post('/', ['uses' => 'AuthorController@create']);
+        $router->post('/', ['uses' => 'CreatorController@create']);
     
-        $router->put('{id}', ['uses' => 'AuthorController@update']);
+        $router->put('{id}', ['uses' => 'CreatorController@update']);
         
-        $router->delete('{id}', ['uses' => 'AuthorController@delete']);
+        $router->delete('{id}', ['uses' => 'CreatorController@delete']);
 
         // $router->get('{id}/titles', ['uses' => 'AuthorController@titles']);
     });

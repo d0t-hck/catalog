@@ -286,3 +286,8 @@
     Deleted sucessfully
 ```
 
+# Statuses
+- [Statuses: Get](#statuses-get)
+- [Statuses: Post](#statuses-post)
+- [Statuses: Update](#statuses-update)
+- [Statuses: Delete](#statuses-delete)
