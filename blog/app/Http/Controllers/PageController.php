@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Handlers\FileHandler;
+use App\Services\FileService;
 use App\Models\Page;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
@@ -43,7 +42,7 @@ class PageController extends Controller
             $originalFilename = $request->file('image')->getClientOriginalName();
             $originalNameArr = explode('.', $originalFilename);
             $fileName = $page->page.'.'.end($originalNameArr);
-            FileHandler::deleteContent($destinationPath.$fileName);
+            FileService::deleteContent($destinationPath.$fileName);
             $request->file('image')->move($destinationPath, $fileName);
             $page->ext = end($originalNameArr);
         }
