@@ -44,7 +44,7 @@ abstract class CommonController extends Controller
     }
 
     public function item($id) {
-        return response()->json(($this->getModel())::find($id));
+        return response()->json(($this->getModel())::findOrFail($id));
     }
 
     public function create(Request $request) {
@@ -61,7 +61,7 @@ abstract class CommonController extends Controller
     }
 
     public function delete($id) {
-        $this->getModel()::findOrFail($id)->delete();
-        return response(204);
+        ($this->getModel())::findOrFail($id)->delete();
+        return response('status',204);
     }
 }

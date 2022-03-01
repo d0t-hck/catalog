@@ -19,7 +19,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($router) {
     #Author
-    $router->group(['prefix' => 'creators'], function() use ($router) {
+    $router->group(['prefix' => 'creator'], function() use ($router) {
 
         $router->get('/', ['uses' => 'CreatorController@list']);
     
@@ -63,7 +63,7 @@ $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($
     });
 
     #Genre
-    $router->group(['prefix' => 'genres'], function() use ($router) {
+    $router->group(['prefix' => 'genre'], function() use ($router) {
 
         $router->get('/', ['uses' => 'GenreController@list']);
     
@@ -77,7 +77,7 @@ $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($
     });
 
     #Status
-    $router->group(['prefix' => 'statuses'], function() use ($router) {
+    $router->group(['prefix' => 'status'], function() use ($router) {
 
         $router->get('/', ['uses' => 'StatusController@list']);
     
@@ -91,7 +91,7 @@ $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($
     });
 
     #Title
-    $router->group(['prefix' => 'titles'], function() use ($router) {
+    $router->group(['prefix' => 'title'], function() use ($router) {
 
         $router->get('/', ['uses' => 'TitleController@list']);
     
@@ -105,7 +105,7 @@ $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($
     });
 
     #Chapter
-    $router->group(['prefix' => 'chapters'], function() use ($router) {
+    $router->group(['prefix' => 'chapter'], function() use ($router) {
 
         $router->get('/', ['uses' => 'ChapterController@list']);
     
@@ -119,7 +119,7 @@ $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($
     });
 
     #Page
-    $router->group(['prefix' => 'pages'], function() use ($router) {
+    $router->group(['prefix' => 'page'], function() use ($router) {
 
         $router->get('/', ['uses' => 'PageController@list']);
     

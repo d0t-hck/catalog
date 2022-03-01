@@ -23,6 +23,18 @@ class Chapter extends Model
         return $this->hasMany(Page::class);
     }
 
+    public static function getValidationRules($create = true){
+        return $create ? [
+            'num' => 'required|numeric',
+            'name' => 'nullable|string',
+            'title_id' =>'required|exists:titles,id'
+        ] : [
+            'num' => 'numeric',
+            'name' => 'nullable|string',
+            'title_id' =>'exists:titles,id'
+        ];
+    }
+
     protected static function boot() {
         $path = base_path(DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR);
         parent::boot();

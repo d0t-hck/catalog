@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Handlers\FileHandler;
+use App\Services\FileService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
@@ -40,19 +40,19 @@ class Page extends Model
             $originalChapter = $page->getOriginal('chapter_id');
             if ($page->page != $originalPage) {
                 $pagePath = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR;
-                FileHandler::changeName($originalPage.'.'.$page->ext, $page->page . '.' . $page->ext, $pagePath);
+                FileService::changeName($originalPage.'.'.$page->ext, $page->page . '.' . $page->ext, $pagePath);
             }
             if ($page->chapter_id != $originalChapter) {
                 $chapter = Chapter::find($originalChapter);
                 $from = $path.$chapter->title->normalized_name.DIRECTORY_SEPARATOR.$chapter->num.DIRECTORY_SEPARATOR.$page->page.'.'.$page->ext;
                 $to = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR.$page->page.'.'.$page->ext;
-                FileHandler::moveFiles($from, $to);
+                FileService::moveFiles($from, $to);
             }
         });
 
         self::deleting(function($page) use($path) {
             $pagePath = $path.$page->chapter->title->normalized_name.DIRECTORY_SEPARATOR.$page->chapter->num.DIRECTORY_SEPARATOR;
-            return FileHandler::deleteContent($pagePath.$page->page.'.'.$page->ext);
+            return FileService::deleteContent($pagePath.$page->page.'.'.$page->ext);
         });
     }
 }

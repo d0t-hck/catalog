@@ -8,12 +8,17 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+
+    public function getModel() {
+        return Page::class;
+    }
+    
     public function list() {
         return response()->json(Page::with('chapter.title')->get());
     }
 
     public function item($id) {
-        return response()->json(Page::find($id));
+        return response()->json(Page::findOrFail($id));
     }
 
     public function create(Request $request) {
@@ -30,7 +35,7 @@ class PageController extends Controller
 
     public function delete($id) {
         Page::findOrFail($id)->delete();
-        return response('Deleted Successfully', 200);
+        return response('status',204);
     }
 
     public function upload($id, Request $request) {

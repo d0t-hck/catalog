@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
+/**
+ * App\Models\Creator
+ * 
+ * @property string $type
+ */
 class Creator extends Model
 {
     use HasFactory;
@@ -16,7 +21,7 @@ class Creator extends Model
         'name', 'info', 'type'
     ];
     
-    public function getValidationRules($create = true) {
+    public static function getValidationRules($create = true) {
         return $create ? [
             'name' => 'required|string|unique:creators',
             'info' => 'nullable',

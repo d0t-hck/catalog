@@ -18,7 +18,7 @@ class CreateTitlesTable extends Migration
         Schema::create('titles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('status_code');
+            $table->tinyInteger('status_code')->nullable();
             $table->foreign('status_code')->references('code')->on('statuses')->onDelete('set null');
             $table->integer('release_year')->default(DB::raw('extract(year from current_date)'));
             $table->text('description');

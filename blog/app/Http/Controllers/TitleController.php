@@ -30,7 +30,7 @@ class TitleController extends Controller
 
     public function delete($id) {
         Title::findOrFail($id)->delete();
-        return response('Deleted Successfully', 200);
+        return response('status',204);
     }
 
 }

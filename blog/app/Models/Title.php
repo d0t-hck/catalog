@@ -52,8 +52,8 @@ class Title extends Model
         });
     }
 
-    public static function getValidationRules() {
-        return [
+    public static function getValidationRules($create = true) {
+        return $create ? [
             'name' => 'required|unique:titles',
             'status_code' => 'required|exists:statuses,code',
             'release_year' => 'required|date_format:Y',
@@ -62,6 +62,15 @@ class Title extends Model
             'artist_id' => 'required|exists:creators,id',
             'publisher_id' => 'required|exists:creators,id',
             'genres' => 'required|array'
+        ] : [
+            'name' => 'required|unique:titles',
+            'status_code' => 'exists:statuses,code',
+            'release_year' => 'date_format:Y',
+            'description' => 'nullable',
+            'author_id' => 'exists:creators,id',
+            'artist_id' => 'exists:creators,id',
+            'publisher_id' => 'exists:creators,id',
+            'genres' => 'array'
         ];
     }
 
