@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "c34cffa5-fa26-45bc-8868-e0862f472518",
+		"_postman_id": "53d42b1d-a984-4da6-b24e-cf10ab4c8d94",
 		"name": "Catalog",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Author",
+			"name": "Creator",
 			"item": [
 				{
 					"name": "Get All",
@@ -20,14 +20,110 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/authors",
+							"raw": "localhost:8000/api/creator",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"authors"
+								"creator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/creator/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"creator",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/creator?type=author",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"creator"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "author"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/creator?type=artist",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"creator"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "artist"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publishers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/creator?type=publisher",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"creator"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "publisher"
+								}
 							]
 						}
 					},
@@ -49,55 +145,14 @@
 							"raw": "{\r\n    \"name\": \"Yamamoto Souichirou\",\r\n    \"bio\": \"Souichirou Yamamoto is a Japanese manga artist. He is known for writing and illustrating Teasing Master Takagi-san and When Will Ayumu Make His Move?\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/authors",
+							"raw": "localhost:8000/api/creator",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"authors"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:8000/api/authors/2",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"authors",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get One",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/api/authors/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"authors",
-								"3"
+								"creator"
 							]
 						}
 					},
@@ -119,232 +174,15 @@
 							"raw": "{\r\n    \"name\": \"GEE So-Lyung\",\r\n    \"bio\": \"Author of popular manhva 'Solo Leveling'\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/authors/3",
+							"raw": "localhost:8000/api/creator/3",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"authors",
+								"creator",
 								"3"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Artist",
-			"item": [
-				{
-					"name": "Get All",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8000/api/artists",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"artists"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Horikoshi Kouhei\",\r\n    \"bio\": \"\"\r\n}"
-						},
-						"url": {
-							"raw": "localhost:8000/api/artists",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"artists"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get One",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Edit",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "localhost:8000/api/artists/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"artists",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Publisher",
-			"item": [
-				{
-					"name": "Get All",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "localhost:8000/api/publishers",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"publishers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get One",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/api/publishers/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"publishers",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Shueisha\",\r\n    \"info\": \"\"\r\n}"
-						},
-						"url": {
-							"raw": "localhost:8000/api/publishers",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"publishers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Edit",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"info\": \"shueisha\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/publishers/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"publishers",
-								"1"
 							]
 						}
 					},
@@ -354,24 +192,17 @@
 					"name": "Delete",
 					"request": {
 						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/publishers/1",
-							"protocol": "http",
+							"raw": "localhost:8000/api/creator/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"publishers",
-								"1"
+								"creator",
+								"2"
 							]
 						}
 					},
@@ -386,7 +217,18 @@
 					"name": "Get All",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/genre",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
 					},
 					"response": []
 				},
@@ -402,14 +244,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/genres/1",
+							"raw": "localhost:8000/api/genre/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"genres",
+								"genre",
 								"1"
 							]
 						}
@@ -432,14 +274,14 @@
 							"raw": "{\r\n    \"name\": \"seinen\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/genres",
+							"raw": "localhost:8000/api/genre",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"genres"
+								"genre"
 							]
 						}
 					},
@@ -461,14 +303,14 @@
 							"raw": "{\r\n    \"name\": \"Sport\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/genres/1",
+							"raw": "localhost:8000/api/genre/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"genres",
+								"genre",
 								"1"
 							]
 						}
@@ -487,14 +329,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/genres/2",
+							"raw": "localhost:8000/api/genre/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"genres",
+								"genre",
 								"2"
 							]
 						}
@@ -518,14 +360,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/statuses",
+							"raw": "localhost:8000/api/status",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"statuses"
+								"status"
 							]
 						}
 					},
@@ -543,14 +385,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/statuses",
+							"raw": "localhost:8000/api/status",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"statuses"
+								"status"
 							]
 						}
 					},
@@ -572,14 +414,44 @@
 							"raw": "{\r\n    \"code\": \"1\",\r\n    \"name\": \"Announced\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/statuses",
+							"raw": "localhost:8000/api/status",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"statuses"
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Suspended\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8000/api/status/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"status",
+								"3"
 							]
 						}
 					},
@@ -601,44 +473,14 @@
 							"raw": "{\r\n    \"name\": \"Suspended\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/statuses/3",
+							"raw": "localhost:8000/api/status/3",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"statuses",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Edit Copy",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Suspended\"\r\n}"
-						},
-						"url": {
-							"raw": "localhost:8000/api/statuses/3",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"statuses",
+								"status",
 								"3"
 							]
 						}
@@ -656,14 +498,93 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/api/titles",
+							"raw": "localhost:8000/api/title",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"titles"
+								"title"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All by Genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/title?genre=",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"title"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All by Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/title?status=",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"title"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All by Genre and Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/title?genre&status=",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"title"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": null
+								},
+								{
+									"key": "status",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -681,14 +602,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/titles/1",
+							"raw": "localhost:8000/api/title/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"titles",
+								"title",
 								"1"
 							]
 						}
@@ -711,14 +632,14 @@
 							"raw": "{\r\n    \"name\": \"Ao Ashi\",\r\n    \"status_code\":1,\r\n    \"description\": \"\",\r\n    \"author_id\": 1,\r\n    \"artist_id\": 1,\r\n    \"publisher_id\": 1,\r\n    \"genres\": [1,2]\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/titles",
+							"raw": "localhost:8000/api/title",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"titles"
+								"title"
 							],
 							"query": [
 								{
@@ -747,14 +668,14 @@
 							"raw": "{\r\n    \"status_id\": 3\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/titles/9",
+							"raw": "localhost:8000/api/title/9",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"titles",
+								"title",
 								"9"
 							],
 							"query": [
@@ -780,14 +701,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/titles/10",
+							"raw": "localhost:8000/api/title/10",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"titles",
+								"title",
 								"10"
 							],
 							"query": [
@@ -818,14 +739,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/chapters",
+							"raw": "localhost:8000/api/chapter",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"chapters"
+								"chapter"
 							]
 						}
 					},
@@ -843,14 +764,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/chapters/1",
+							"raw": "localhost:8000/api/chapter/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"chapters",
+								"chapter",
 								"1"
 							]
 						}
@@ -873,14 +794,14 @@
 							"raw": "{\r\n    \"num\": 1,\r\n    \"name\": \"First touch\",\r\n    \"title_id\": 9\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/chapters",
+							"raw": "localhost:8000/api/chapter",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"chapters"
+								"chapter"
 							]
 						}
 					},
@@ -902,14 +823,14 @@
 							"raw": "{\r\n    \"num\": 2,\r\n    \"name\": \"Tokyo Esperion\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8000/api/chapters/1",
+							"raw": "localhost:8000/api/chapter/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"chapters",
+								"chapter",
 								"1"
 							],
 							"query": [
@@ -935,14 +856,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8000/api/chapters/2",
+							"raw": "localhost:8000/api/chapter/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"chapters",
+								"chapter",
 								"2"
 							],
 							"query": [
@@ -967,7 +888,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/pages",
+							"raw": "http://localhost:8000/api/page",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -975,7 +896,7 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"pages"
+								"page"
 							]
 						}
 					},
@@ -987,7 +908,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/pages/1",
+							"raw": "http://localhost:8000/api/page/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -995,7 +916,7 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"pages",
+								"page",
 								"1"
 							]
 						}
@@ -1018,7 +939,7 @@
 							"raw": "{\r\n    \"chapter_id\": 21,\r\n    \"page\": 1\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/pages",
+							"raw": "http://localhost:8000/api/page",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1026,65 +947,7 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"pages"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Edit",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"page\": 2\r\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/pages/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"pages",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/api/pages/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"pages",
-								"1"
+								"page"
 							]
 						}
 					},
@@ -1118,14 +981,72 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/pages",
+							"raw": "localhost:8000/api/page",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"pages"
+								"page"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page\": 2\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/page/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"page",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/page/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"page",
+								"1"
 							]
 						}
 					},
