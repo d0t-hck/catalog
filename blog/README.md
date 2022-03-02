@@ -1,5 +1,16 @@
 # Catalog REST API on Lumen
 
+# Deploy
+To deploy _*API*_ clone this repository
+Then in project folder run command `composer install` to get required dependencies.
+After that you have to _*configure*_ `.env` file (_*DB connection, user, password*_)
+Then run command `php artisan migrate` to apply migrations and create needed table in DB(configured in `.env` file).
+Now you are ready to _*RUN*_ project.
+To do so run command `php artisan serve`.
+You should see this message:
+
+    Lumen development server started: http://127.0.0.1:8000
+    [{Current Date}] PHP 8.1.2 Development Server (http://127.0.0.1:8000) started
 ## Endpoints
 - [Creators](#creators)
 - [Genres](#genres)
