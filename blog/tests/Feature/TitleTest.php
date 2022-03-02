@@ -105,7 +105,7 @@ class TitleTest extends TestCase
             'artist_id' => $artist,
             'publisher_id' => $publisher
         ]);
-        dd($this->response);
+        // dd($this->response);
         $this->response
             ->assertStatus(200)
             ->assertDatabaseHas('titles',[

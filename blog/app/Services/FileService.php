@@ -32,7 +32,13 @@ class FileService {
 
   public static function changeName($old, $new, $base) {
     if (file_exists($base.$old)) {
-      return rename($base.$old, $base.$new);
+      if(!rename($base.$old, $base.$new)){
+        if (copy($base.$old,$base.$new)){
+           return FileService::deleteContent($base.$old);
+        }
+        return false;
+      }
+      return true;
     }
     return false;
   }
