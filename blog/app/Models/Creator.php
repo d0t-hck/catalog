@@ -20,6 +20,12 @@ class Creator extends Model
     protected $fillable = [
         'name', 'info', 'type'
     ];
+
+    protected $with = ['titles'];
+
+    public function titles() {
+        return $this->belongsTo(Title::class, 'author_id');
+    }
     
     public static function getValidationRules($create = true) {
         return $create ? [
