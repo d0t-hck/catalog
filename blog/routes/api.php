@@ -18,7 +18,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($router) {
-    #Author
+    #Creators (Author, Artist, Publisher)
     $router->group(['prefix' => 'creator'], function() use ($router) {
 
         $router->get('/', ['uses' => 'CreatorController@list']);
@@ -32,34 +32,6 @@ $router->group(['middleware' => 'convert', 'prefix' => 'api'], function() use ($
         $router->delete('{id}', ['uses' => 'CreatorController@delete']);
 
         // $router->get('{id}/titles', ['uses' => 'AuthorController@titles']);
-    });
-
-    #Artist
-    $router->group(['prefix' => 'artists'], function() use ($router) {
-
-        $router->get('/', ['uses' => 'ArtistController@list']);
-    
-        $router->get('{id}', ['uses' => 'ArtistController@item']);
-    
-        $router->post('/', ['uses' => 'ArtistController@create']);
-    
-        $router->put('{id}', ['uses' => 'ArtistController@update']);
-    
-        $router->delete('{id}', ['uses' => 'ArtistController@delete']);
-    });
-
-    #Publisher
-    $router->group(['prefix' => 'publishers'], function() use ($router) {
-
-        $router->get('/', ['uses' => 'PublisherController@list']);
-    
-        $router->get('{id}', ['uses' => 'PublisherController@item']);
-    
-        $router->post('/', ['uses' => 'PublisherController@create']);
-    
-        $router->put('{id}', ['uses' => 'PublisherController@update']);
-    
-        $router->delete('{id}', ['uses' => 'PublisherController@delete']);
     });
 
     #Genre
