@@ -15,7 +15,7 @@ class CreateStatusesTable extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('code')->unique();
+            $table->tinyInteger('code')->unique()->index();
             $table->string('name')->unique();
             $table->timestamps();
         });
