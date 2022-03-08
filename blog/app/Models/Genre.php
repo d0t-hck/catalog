@@ -13,7 +13,7 @@ class Genre extends Model
         'name'
     ];
     public function titles() {
-        return $this->belongsToMany(Title::class, 'title_genres');
+        return $this->belongsToMany(Title::class);
     }
 
     public static function getValidationRules($create = true){
