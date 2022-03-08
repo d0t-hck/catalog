@@ -13,6 +13,10 @@ class Status extends Model
         'code', 'name'
     ];
 
+    public function titles(){
+        return $this->belongsTo(Title::class, 'code', 'status_code');
+    }
+
     public static function getValidationRules($create = true) {
         return $create ? [
             'code' => 'required|numeric|unique:statuses',
