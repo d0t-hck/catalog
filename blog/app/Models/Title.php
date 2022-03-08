@@ -21,12 +21,34 @@ class Title extends Model
         'normalized_name'
     ];
 
+    protected $with = [
+        'status',
+        'genres',
+        'author'
+    ];
+
     public function genres(){
         return $this->belongsToMany(Genre::class);
     }
 
     public function chapters(){
         return $this->hasMany(Chapter::class);
+    }
+
+    public function status(){
+        return $this->hasOne(Status::class, 'code', 'status_code');
+    }
+
+    public function author(){
+        return $this->hasOne(Creator::class, 'id', 'author_id');
+    }
+
+    public function artist() {
+        return $this->hasOne(Creator::class, 'id', 'artist_id');
+    }
+
+    public function publisher(){
+        return $this->hasOne(Creator::class, 'id', 'publisher_id');
     }
 
     protected static function boot() {
