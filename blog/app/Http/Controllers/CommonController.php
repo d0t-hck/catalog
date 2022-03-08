@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Actions\QueryStringAction;
 use Illuminate\Http\Request;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
-abstract class CommonController extends Controller
+abstract class CommonController extends BaseController
 {
     abstract protected function getModel();
 
